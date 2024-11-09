@@ -1,0 +1,7 @@
+{ //made small change here of removing fwd slash: will now search all folders
+  "compilerOptions": {
+    "paths": {
+      "@*": ["./*"]
+    }
+  }
+}
