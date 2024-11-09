@@ -1,4 +1,6 @@
 import '@styles/global.css';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 //everything is a functional component, which has a return statement that lets u use HTML
 //rmb to export the component so it can be used in otehr files
 export const metadata = {

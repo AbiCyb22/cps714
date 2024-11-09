@@ -2,7 +2,13 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>TICKET MANAGEMENT</div>
+    <section>
+      <h1>
+      TICKET MANAGEMENT
+      </h1>
+      
+      
+    </section>
   )
 }
 

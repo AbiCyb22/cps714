@@ -5,6 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* 
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
@@ -40,11 +42,12 @@
 }
 
 
+
 html {
     scroll-behavior: smooth;
 }
 
-.section {
+section {
     margin-top: 1.5rem;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
@@ -57,8 +60,14 @@ h1 {
 }
 
 h2 {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 1.2rem;
+}
+
+h3 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .card {
@@ -82,11 +91,11 @@ h2 {
 }
 .card__element {
     width: 20rem;
-    height: 12rem;
+    height: 14rem;
     line-height: 0.9;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 300;
-    line-height: 2rem;
+    line-height: 1.7rem;
     background-color: #C0C0C0;
     padding: 2rem 2rem 2rem 2rem;
     border-radius: 13px;

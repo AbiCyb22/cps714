@@ -2,7 +2,10 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>FEEDBACK MANAGEMENT</div>
+    <section>
+      <h1>
+      FEEDBACK MANAGEMENT
+        </h1></section>
   )
 }
 
