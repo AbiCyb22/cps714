@@ -1,18 +1,18 @@
-// import firebase from "firebase/app";
-// import "firebase/auth";
-// import "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-// const clientCredentials = {
-//     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-//     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-//     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-//     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-//     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-//     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-// };
 
-// if (!firebase.getApps.length) {
-//     firebase.initializeApp(clientCredentials);
-// }
+    const firebaseConfig = {
+        apiKey: "AIzaSyBqtv3ObRJewycARSJrb86xYOXkNrhCXPA",
+        authDomain: "cps714-bd3d3.firebaseapp.com",
+        projectId: "cps714-bd3d3",
+        storageBucket: "cps714-bd3d3.firebasestorage.app",
+        messagingSenderId: "525592937430",
+        appId: "1:525592937430:web:b9124a1811c3a42ddd9a77"
+      };
+      
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
-// export default firebase;
+
+export  { db };
