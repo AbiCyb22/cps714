@@ -1,17 +1,37 @@
-import React from 'react'
-import '@styles/global.css';
+// pages/users.js
+"use client"
 
-const user = () => {
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/clientApp.ts";
+
+const Users = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersCollection = collection(db, "users");
+      const usersSnapshot = await getDocs(usersCollection);
+      const usersList = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setUsers(usersList);
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
-    <section>
-      <h1>
-      USER MANAGEMENT
-      </h1>
-      <h2>
-      Show list of registered users from database u can click on to show each username, email, password fields u can edit  
-      </h2>
-    </section>
-  )
-}
+    <div>
+      <h1>Users</h1>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-export default user
+export default Users;
