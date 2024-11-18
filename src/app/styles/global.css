@@ -1,148 +1,94 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-/*styling functions and tailwind libaries
-*/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* 
-  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
-*/
-
-/* Took these cards from my own non-react projs.
-*/
 :root {
-    --clr-light: #f6f3ef; 
-    --clr-cream: #ede7de; /*amber100*/
-    --clr-dark: #025a4e; 
-    --clr-skin: #fdba74; /*orange300*/
-    --clr-green: #025a4e; /*green600*/   
-    --clr-neon: #86dfc1;
-    --clr-darkneon: #14b8a6;
-        /* sizes. next time use values from tailwind css */
-    --size-xs: 0.5rem;
-    --size-s: 0.75rem;
-    --size-m: 1rem ;
-    --size-m2: 1.25rem;
-    --size-l: 1.5rem;
-    --size-l2: 1.75rem;
-    --size-xl: 2rem;
-    --size-2xl: 3rem;
-    --size-3xl: 5rem ;
-    --size-4xl: 7rem;
-}
-
-.section {
-    margin-top: 1.5rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-    
-}
-
-
-html {
+    --clr-light: #e5e5e5; /* Light text color */
+    --clr-cream: #3d3d3d; /* Subtle dark background */
+    --clr-dark: #121212; /* Deep dark background */
+    --clr-skin: #fdba74; /* Accent orange */
+    --clr-green: #025a4e; /* Dark green */
+    --clr-neon: #86dfc1; /* Neon teal */
+    --clr-darkneon: #0f766e; /* Muted teal */
+  }
+  
+  html {
     scroll-behavior: smooth;
-}
-
-.section {
-    margin-top: 1.5rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-    
-}
-
-h1 {
-    font-weight: 300;
-    font-size: 3rem;
-}
-
-h2 {
-    font-weight: 300;
-    font-size: 1.2rem;
-}
-
-.card {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-.card__list{
+    font-family: "Inter", sans-serif;
+  }
+  
+  .dark-section {
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .card-container {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  
+  .card__list {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    direction: ltr;
-    align-items: space-around;
-    list-style: none;
+    gap: 1.5rem;
     justify-content: center;
-    gap: 1em;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    padding-left: 0rem;
-    
-}
-.card__element {
-    width: 20rem;
-    height: 12rem;
-    line-height: 0.9;
-    font-size: 1.5rem;
-    font-weight: 300;
-    line-height: 2rem;
-    background-color: #C0C0C0;
-    padding: 2rem 2rem 2rem 2rem;
-    border-radius: 13px;
-
-    transition: transform 0.3s;
-}
-
-.card__element:hover {
-    transform: translateY(-10px);
-}
-
-/* Removes all styling for button so i can make new button later */
-button {
-    display: inline-block;
     padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: inherit;
-
-}
-/*Button styling.
-order of direction for padding, etc.. is clockwise from top.
-*/
-.btn {
-    display: inline-block;
-    font-weight: 600;
-    text-decoration: none;
-    background-color: var(--clr-green);
+    list-style: none;
+  }
+  
+  .card__element {
+    background-color: var(--clr-cream);
     color: var(--clr-light);
-    padding: 0.5em 0.7em;
-    border-radius: 7px;
-
-    box-shadow: 0px 4px 5px #233831,
-                0px 2px 4px #233831;
-    transition: transform 0.3s, box-shadow 0.2s, color 0.2s, background-color 0.2s ease;
-}
-.btn:hover {
-    transform: translateY(-5px);
-    background-color: #dedede;
-    color: var(--clr-dark);
-    box-shadow: 0px 4px 5px #9c9898,
-                0px 0px 4px #9c9898;
-}
-
-/*Containers: mobile first styling: minwidth. desktop-first: maxwidth
-below are breakpoints. each min-wdith specify the device size for above that width*/
-.container {
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card__element:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  .form-container {
     width: 100%;
-    max-width: 1200px;
-    min-height: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    
-}
-
-
+    max-width: 400px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--clr-cream);
+    color: var(--clr-light);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .input-field:focus {
+    box-shadow: 0px 0px 6px var(--clr-neon);
+    transform: translateY(-3px);
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--clr-skin);
+    color: var(--clr-dark);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: var(--clr-neon);
+    transform: translateY(-5px);
+  }
+  
