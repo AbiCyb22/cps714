@@ -145,7 +145,7 @@ const Users = () => {
 
   return (
     <div className="dark-section min-h-screen flex flex-col items-center justify-center p-6">
-      <h1 className="text-4xl font-bold text-clr-light mb-4 justify-center">User Management</h1>
+      <h1 className="text-4xl font-bold text-clr-light mb-4">User Management</h1>
       <div className="card-container">
         <ul className="card__list">
           {users.map((user) => (
