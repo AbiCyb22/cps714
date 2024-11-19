@@ -5,8 +5,11 @@ import { db } from "../firebase/clientApp.ts";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+  const [newEmail, setNewEmail] = useState(""); // Email only
+  const [newContactNumber, setNewContactNumber] = useState(""); // New field for contact number
+  const [newFirstName, setNewFirstName] = useState(""); // New field for first name
+  const [newLastName, setNewLastName] = useState(""); // New field for last name
+  const [newPreferences, setNewPreferences] = useState(""); // New field for preferences
   const [editingUser, setEditingUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +34,7 @@ const Users = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
 
-    if (newName.trim() && newEmail.trim()) {
+    if (newEmail.trim()) { // Only checking email
       setLoading(true);
       try {
         // Query to get the highest user_id in the database
@@ -45,13 +48,37 @@ const Users = () => {
           newUserId = lastUser.user_id + 1; // Increment the highest user_id by 1
         }
 
-        // Add new user with incremented user_id
-        const docRef = await addDoc(usersCollection, { name: newName, email: newEmail, user_id: newUserId });
+        // Add new user with the new fields
+        const docRef = await addDoc(usersCollection, {
+          email: newEmail,
+          contact_number: newContactNumber,
+          first_name: newFirstName,
+          last_name: newLastName,
+          preferences: newPreferences,
+          profile_id: newUserId, // Profile ID
+          user_id: newUserId, // Custom user ID
+          created_at: new Date(),
+          updated_at: new Date(),
+        });
 
-        setUsers([...users, { id: docRef.id, name: newName, email: newEmail, user_id: newUserId }]);
+        setUsers([...users, {
+          id: docRef.id,
+          email: newEmail,
+          contact_number: newContactNumber,
+          first_name: newFirstName,
+          last_name: newLastName,
+          preferences: newPreferences,
+          profile_id: newUserId,
+          user_id: newUserId,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }]);
 
-        setNewName("");
         setNewEmail("");
+        setNewContactNumber("");
+        setNewFirstName("");
+        setNewLastName("");
+        setNewPreferences("");
       } catch (error) {
         console.error("Error adding user:", error);
       } finally {
@@ -73,24 +100,40 @@ const Users = () => {
   };
 
   const handleEditUser = (user) => {
-    setNewName(user.name);
     setNewEmail(user.email);
+    setNewContactNumber(user.contact_number || "");
+    setNewFirstName(user.first_name || "");
+    setNewLastName(user.last_name || "");
+    setNewPreferences(user.preferences || "");
     setEditingUser(user);
   };
 
   const handleUpdateUser = async (e) => {
     e.preventDefault();
 
-    if (newName.trim() && newEmail.trim() && editingUser) {
+    if (newEmail.trim() && editingUser) {
       setLoading(true);
       try {
         const userRef = doc(db, "users", editingUser.id);
-        await updateDoc(userRef, { name: newName, email: newEmail });
+        await updateDoc(userRef, {
+          email: newEmail,
+          contact_number: newContactNumber,
+          first_name: newFirstName,
+          last_name: newLastName,
+          preferences: newPreferences,
+          updated_at: new Date(), // Update the timestamp when updating
+        });
 
-        setUsers(users.map((user) => (user.id === editingUser.id ? { ...user, name: newName, email: newEmail } : user)));
+        setUsers(users.map((user) => (user.id === editingUser.id
+          ? { ...user, email: newEmail, contact_number: newContactNumber, first_name: newFirstName, last_name: newLastName, preferences: newPreferences, updated_at: new Date() }
+          : user
+        )));
 
-        setNewName("");
         setNewEmail("");
+        setNewContactNumber("");
+        setNewFirstName("");
+        setNewLastName("");
+        setNewPreferences("");
         setEditingUser(null);
       } catch (error) {
         console.error("Error updating user:", error);
@@ -107,9 +150,12 @@ const Users = () => {
         <ul className="card__list">
           {users.map((user) => (
             <li key={user.id} className="card__element dark-card flex flex-col items-center justify-between">
-              <p className="text-clr-neon">Name: {user.name}</p>
               <p className="text-clr-light">Email: {user.email}</p>
-              <p className="text-clr-light">User ID: {user.user_id}</p> {/* Displaying user_id */}
+              <p className="text-clr-light">User ID: {user.user_id}</p>
+              <p className="text-clr-light">Contact Number: {user.contact_number}</p>
+              <p className="text-clr-light">First Name: {user.first_name}</p>
+              <p className="text-clr-light">Last Name: {user.last_name}</p>
+              <p className="text-clr-light">Preferences: {user.preferences}</p>
               <div className="flex gap-4">
                 <button
                   className="edit-btn"
@@ -136,17 +182,38 @@ const Users = () => {
           onSubmit={editingUser ? handleUpdateUser : handleAddUser}
         >
           <input
-            type="text"
-            placeholder="Enter name"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            className="input-field"
-          />
-          <input
             type="email"
             placeholder="Enter email"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
+            className="input-field"
+          />
+          <input
+            type="text"
+            placeholder="Enter contact number"
+            value={newContactNumber}
+            onChange={(e) => setNewContactNumber(e.target.value)}
+            className="input-field"
+          />
+          <input
+            type="text"
+            placeholder="Enter first name"
+            value={newFirstName}
+            onChange={(e) => setNewFirstName(e.target.value)}
+            className="input-field"
+          />
+          <input
+            type="text"
+            placeholder="Enter last name"
+            value={newLastName}
+            onChange={(e) => setNewLastName(e.target.value)}
+            className="input-field"
+          />
+          <input
+            type="text"
+            placeholder="Enter preferences"
+            value={newPreferences}
+            onChange={(e) => setNewPreferences(e.target.value)}
             className="input-field"
           />
           <button type="submit" className="btn">
