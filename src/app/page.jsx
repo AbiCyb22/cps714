@@ -1,7 +1,5 @@
 //aka the App: the renderer
 import Link from 'next/link';
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
 
 
 const Home = () => {
