@@ -2,7 +2,10 @@ import React from 'react'
 
 function page() {
   return (
-    <div>CONTENT MANAGEMENT</div>
+    <section>
+      <h1>
+      CONTENT MANAGEMENT
+        </h1></section>
   )
 }
 
