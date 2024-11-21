@@ -12,7 +12,7 @@ const Tickets = () => {
 
   //ticket management stuff
   /*
-• ticket_id (PK) - INT, Auto Increment 
+• ticket_id (PK) - INT, Auto Increment  
 • user_id (FK) - INT, References user(user_id) 
 • category - ENUM ('Technical Support', 'Product Inquiry', 'General Question') 
 • status - ENUM ('Open', 'In-Progress', 'Resolved', 'Closed') 
